@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Mieux Voter – Graphiques dynamiques</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400,1,500,1,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/styles/mv.css" />
+	<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+</head>
+<body>
+	<header class="mv-header">
+		<div class="mv-container mv-header__inner">
+			<div class="mv-brand">
+				<img class="mv-brand__logo" src="image.png" alt="Mieux Voter" />
+			</div>
+			<nav class="mv-nav">
+				<a class="mv-nav__link" href="#">Accueil</a>
+				<a class="mv-nav__link" href="#graphiques">Graphiques</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="mv-main mv-container" id="graphiques">
+		<section class="mv-section">
+			<h1 class="mv-title">Explorateur de méthodes de vote</h1>
+			<p class="mv-subtitle">Sélectionnez une méthode pour afficher les visualisations associées.</p>
+
+			<!-- Tabs: méthodes de vote -->
+			<div class="mv-controls" role="tablist" aria-label="Méthodes de vote">
+				<button class="mv-btn mv-btn--pill mv-btn--primary" data-tab="tab-jm" role="tab" aria-selected="true">Jugement Majoritaire</button>
+				<button class="mv-btn mv-btn--pill" data-tab="tab-approval" role="tab" aria-selected="false">Vote par Approbation</button>
+				<button class="mv-btn mv-btn--pill" data-tab="tab-fptp" role="tab" aria-selected="false">Scrutin Uninominal</button>
+			</div>
+
+			<!-- Contenu: Jugement Majoritaire -->
+			<div id="tab-jm" class="mv-tabcontent is-active" role="tabpanel" aria-labelledby="Jugement Majoritaire">
+				<!-- Explication -->
+				<div class="mv-card">
+					
+					<p>Le jugement majoritaire est une méthode où chaque électeur attribue une mention à chaque candidat. Le classement est établi selon la mention majoritaire de chaque candidat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur arcu non nisl interdum, ut tempus ipsum tempor.</p>
+				</div>
+
+				<!-- Section 1: Evolution du classement -->
+				<h3 class="mv-section-subtitle">Évolution du classement</h3>
+				<div class="mv-card">
+					<div class="mv-controls" aria-label="Sélection d'institut (classement)">
+						<button class="mv-btn mv-btn--pill mv-btn--primary" data-target="jm-ranking-plot" data-src="graphs/jm/ranking_plot_IPSOS.json">IPSOS</button>
+					</div>
+					<div id="jm-ranking-plot" class="mv-plot" aria-live="polite"></div>
+				</div>
+
+				<!-- Section 2: Grille des graphiques classés (multi-sous-graphiques) -->
+				<h3 class="mv-section-subtitle">Grille des profils de mérite (séries temporelles)</h3>
+				<div class="mv-card">
+					<div class="mv-controls" aria-label="Sélection d'institut (grille)">
+						<button class="mv-btn mv-btn--pill mv-btn--primary" data-target="jm-grid-plot" data-src="graphs/jm/ranked_time_merit_profile_IPSOS.json">IPSOS</button>
+					</div>
+					<div id="jm-grid-plot" class="mv-plot" aria-live="polite"></div>
+				</div>
+
+				<!-- Section 3: Vue détaillée d'un sondage (profil de mérite) -->
+				<h3 class="mv-section-subtitle">Profil de mérite — Sondage unique</h3>
+				<div class="mv-card">
+					<div id="jm-survey-controls" class="mv-controls" aria-label="Sélection sondage (profil de mérite)"></div>
+					<div id="jm-survey-plot" class="mv-plot" aria-live="polite"></div>
+				</div>
+
+				<!-- Section 4: Vue détaillée d'un candidat (profil temporel) -->
+				<h3 class="mv-section-subtitle">Profil de mérite — Candidat</h3>
+				<div class="mv-card">
+					<div id="jm-candidate-controls" class="mv-controls" aria-label="Sélection candidat (profil temporel)"></div>
+					<div id="jm-candidate-plot" class="mv-plot" aria-live="polite"></div>
+				</div>
+			</div>
+
+			<!-- Contenu: Approbation (placeholder) -->
+			<div id="tab-approval" class="mv-tabcontent" role="tabpanel" aria-labelledby="Vote par Approbation">
+				<div class="mv-card">
+					
+					<p class="mv-muted">Bientôt disponible.</p>
+				</div>
+			</div>
+
+			<!-- Contenu: Scrutin uninominal (placeholder) -->
+			<div id="tab-fptp" class="mv-tabcontent" role="tabpanel" aria-labelledby="Scrutin Uninominal">
+				<div class="mv-card">
+					
+					<p class="mv-muted">Bientôt disponible.</p>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="mv-footer">
+		<div class="mv-container mv-footer__inner">
+			<p class="mv-footer__text">© <span id="mv-year"></span> Mieux Voter — Démo graphique indépendante</p>
+		</div>
+	</footer>
+
+	<script src="assets/js/app.js"></script>
+</body>
+</html> 

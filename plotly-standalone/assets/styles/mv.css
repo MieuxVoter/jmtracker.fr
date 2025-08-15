@@ -1,0 +1,121 @@
+/* Core brand setup (extracted from globals.css) */
+:root {
+	--mv-brand: #2400FD;
+	--mv-brand-dark: #0A004C;
+	--mv-text: #0A004C;
+	--mv-muted: #8F88BA;
+	--mv-bg: #ffffff;
+	--mv-surface: #f8faff;
+	--mv-border: #2400FD16;
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+	font-family: 'DM Serif Display', serif !important;
+	background: var(--mv-bg);
+	color: var(--mv-text);
+}
+
+h1, h2, h4 { font-family: "DM Serif Display", serif !important; }
+
+h2 { line-height: 72px; font-weight: 400; }
+
+p, button, span, a, h3 {
+	font-family: "DM Sans", sans-serif !important;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* Layout */
+.mv-container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+
+.mv-header {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background: var(--mv-bg);
+	border-bottom: 1px solid var(--mv-border);
+}
+.mv-header__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 18px 0;
+}
+.mv-brand { 
+	display: block; 
+	width: auto; 
+	height: auto; 
+}
+.mv-brand__logo { 
+	width: auto; 
+	height: auto; 
+	max-width: none; 
+	max-height: none; 
+	display: block; 
+}
+
+.mv-nav { display: flex; gap: 18px; }
+.mv-nav__link { font-weight: 700; color: var(--mv-brand-dark); }
+
+.mv-main { padding: 32px 0 56px; }
+.mv-section { margin: 16px 0; }
+.mv-title { font-size: 40px; margin: 0 0 8px; }
+.mv-subtitle { margin: 0 0 24px; color: var(--mv-muted); }
+
+/* Cards / surfaces */
+.mv-card {
+	background: var(--mv-surface);
+	border: 1px solid var(--mv-border);
+	border-radius: 14px;
+	padding: 16px;
+}
+
+/* Controls */
+.mv-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 16px; }
+
+.mv-btn {
+	appearance: none;
+	border: 1px solid var(--mv-border);
+	background: #fff;
+	color: var(--mv-brand-dark);
+	font-weight: 700;
+	padding: 10px 14px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, color 120ms ease;
+}
+.mv-btn:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.mv-btn:active { transform: translateY(0); box-shadow: none; }
+
+.mv-btn--pill { border-radius: 999px; }
+.mv-btn--primary { background: var(--mv-brand); color: #fff; border-color: var(--mv-brand); }
+
+/* Plot area */
+	.mv-plot {
+		width: 100%;
+		min-height: 1000px; /* ensures the card has space for Plotly to render */
+	}
+
+/* Tabs */
+.mv-tabcontent { display: none; }
+.mv-tabcontent.is-active { display: block; }
+.mv-section-title { margin: 0 0 8px; }
+.mv-section-subtitle {
+	font-family: 'DM Serif Display', serif !important;
+	font-size: 28px;
+	line-height: 1.2;
+	margin: 32px 0 12px;
+}
+.mv-muted { color: var(--mv-muted); }
+
+/* Footer */
+.mv-footer { border-top: 1px solid var(--mv-border); background: var(--mv-bg); }
+.mv-footer__inner { padding: 18px 0; }
+.mv-footer__text { margin: 0; color: var(--mv-muted); font-size: 14px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+	.mv-title { font-size: 30px; }
+} 
