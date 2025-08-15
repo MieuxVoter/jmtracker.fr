@@ -7,21 +7,57 @@
 	// Tabs handling
 	const tabButtons = Array.from(document.querySelectorAll('[data-tab]'));
 	const tabPanels = Array.from(document.querySelectorAll('.mv-tabcontent'));
+	const loadedTabs = new Set();
+
 	function activateTab(targetId) {
 		tabButtons.forEach(btn => {
 			const isActive = btn.getAttribute('data-tab') === targetId;
 			btn.classList.toggle('mv-btn--primary', isActive);
 			btn.setAttribute('aria-selected', String(isActive));
 		});
+
 		tabPanels.forEach(panel => {
-			panel.classList.toggle('is-active', panel.id === targetId);
+			const isActive = panel.id === targetId;
+			panel.classList.toggle('is-active', isActive);
+		});
+
+		// Load content for the activated tab if it's the first time
+		if (!loadedTabs.has(targetId)) {
+			const panel = document.getElementById(targetId);
+			// Wait for the transition to end before loading plots.
+			const loadOnce = () => {
+				// Ensure it only runs once, in case of race condition with timeout.
+				if (loadedTabs.has(targetId)) return;
+				loadInitialPlotsForTab(targetId);
+				loadedTabs.add(targetId);
+			};
+
+			panel.addEventListener('transitionend', loadOnce, { once: true });
+			// Fallback for browsers that don't fire transitionend or if there's no transition
+			setTimeout(loadOnce, 300);
+		}
+	}
+
+	function loadInitialPlotsForTab(tabId) {
+		const panel = document.getElementById(tabId);
+		if (!panel) return;
+
+		console.log(`Loading initial plots for ${tabId}`);
+		// Find buttons marked as primary to load their graphs by default
+		const defaultButtons = panel.querySelectorAll('.mv-btn--primary[data-target][data-src]');
+		defaultButtons.forEach(btn => {
+			fetchAndRenderInto(btn.getAttribute('data-target'), btn.getAttribute('data-src'));
 		});
 	}
+
 	tabButtons.forEach(btn => {
 		btn.addEventListener('click', () => activateTab(btn.getAttribute('data-tab')));
 	});
-	// default
-	if (tabButtons.length) activateTab(tabButtons[0].getAttribute('data-tab'));
+
+	// Activate the first tab by default
+	if (tabButtons.length) {
+		activateTab(tabButtons[0].getAttribute('data-tab'));
+	}
 
 	// Plotly helpers
 	function buildFullscreenButton() {
@@ -94,20 +130,6 @@
 		});
 	});
 
-	// Mark the first button of each target as active by default so it matches the initial render
-	const firstButtonPerTarget = {};
-	loaderButtons.forEach(btn => {
-		const t = btn.getAttribute('data-target');
-		if (!firstButtonPerTarget[t]) firstButtonPerTarget[t] = btn;
-	});
-	Object.values(firstButtonPerTarget).forEach(btn => {
-	btn.classList.add('mv-btn--primary');
-	btn.setAttribute('aria-selected','true');
-});
-
-	// Initial renders for JM tab (except survey, which is dynamic)
-	fetchAndRenderInto('jm-ranking-plot', 'graphs/jm/ranking_plot_IPSOS.json');
-	fetchAndRenderInto('jm-grid-plot', 'graphs/jm/ranked_time_merit_profile_IPSOS.json');
 
 	// Dynamic polls (JM survey section)
 	async function getPollFiles() {
