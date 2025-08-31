@@ -6,6 +6,7 @@ import { fetchAndRenderInto } from './plotly-utils.js';
 import { loadInitialPlotsForTab } from './data-loader.js';
 import { initPolls } from './features/polls.js';
 import { initCandidates } from './features/candidates.js';
+import { initApprovalPolls } from './features/approval-polls.js';
 
 (function() {
     'use strict';
@@ -32,6 +33,7 @@ import { initCandidates } from './features/candidates.js';
     // Initialize dynamic features
     initPolls(fetchAndRenderInto, loaderButtons);
     initCandidates(fetchAndRenderInto, loaderButtons);
+    initApprovalPolls(fetchAndRenderInto, loaderButtons);
 
     // Set up window resize handler
     setupResizeHandler();
