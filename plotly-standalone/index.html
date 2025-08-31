@@ -40,8 +40,7 @@
 			<div id="tab-jm" class="mv-tabcontent is-active" role="tabpanel" aria-labelledby="Jugement Majoritaire">
 				<!-- Explication -->
 				<div class="mv-card">
-					
-					<p>Le jugement majoritaire est une méthode où chaque électeur attribue une mention à chaque candidat. Le classement est établi selon la mention majoritaire de chaque candidat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur arcu non nisl interdum, ut tempus ipsum tempor.</p>
+					<p>Le jugement majoritaire est une méthode de vote où chaque électeur attribue une mention qualitative à chaque candidat (Excellent, Très bien, Bien, Assez bien, Passable, Insuffisant, À rejeter). Le classement final est établi selon la mention majoritaire de chaque candidat, c'est-à-dire la mention qui partage l'électorat en deux groupes de taille égale. Cette méthode permet d'exprimer des opinions nuancées et de mieux refléter les préférences collectives.</p>
 				</div>
 
 				<!-- Section 1: Evolution du classement -->
@@ -81,7 +80,7 @@
 			<div id="tab-approval" class="mv-tabcontent" role="tabpanel" aria-labelledby="Vote par Approbation">
 				<!-- Explication -->
 				<div class="mv-card">
-					<p>Le vote par approbation est une méthode où chaque électeur approuve autant de candidats qu'il le souhaite. Le candidat avec le plus d'approbations l'emporte.</p>
+					<p>Le vote par approbation permet à chaque électeur d'approuver (ou non) autant de candidats qu'il le souhaite. Chaque candidat approuvé reçoit un point. Le candidat ayant reçu le plus d'approbations l'emporte. Cette méthode simple encourage l'expression de préférences multiples et peut réduire le vote stratégique.</p>
 				</div>
 
 				<!-- Section 1: Evolution du classement -->
@@ -94,9 +93,12 @@
 				</div>
 
 				<!-- Section 2: Grilles d'approbation -->
-				<h3 class="mv-section-subtitle">Grilles d'approbation</h3>
+				<h3 class="mv-section-subtitle">Profils d'approbation temporels</h3>
 				<div class="mv-card">
-					<p class="mv-muted">Bientôt disponible.</p>
+					<div class="mv-controls" aria-label="Sélection d'institut (profils approbation)">
+						<button class="mv-btn mv-btn--pill mv-btn--primary" data-target="approval-profile-plot" data-src="graphs/approbation/time_approval_profile_IPSOS.json">IPSOS</button>
+					</div>
+					<div id="approval-profile-plot" class="mv-plot" aria-live="polite"></div>
 				</div>
 
 				<!-- Section 3: Sondage-unique -->
@@ -114,9 +116,15 @@
 
 			<!-- Contenu: Scrutin uninominal (placeholder) -->
 			<div id="tab-fptp" class="mv-tabcontent" role="tabpanel" aria-labelledby="Scrutin Uninominal">
+				<!-- Explication -->
 				<div class="mv-card">
-					
-					<p class="mv-muted">Bientôt disponible.</p>
+					<p>Le scrutin uninominal majoritaire à un tour est la méthode traditionnelle où chaque électeur vote pour un seul candidat. Le candidat ayant reçu le plus de voix l'emporte, même sans majorité absolue. Cette méthode simple peut conduire à des résultats peu représentatifs en cas de dispersion des voix.</p>
+				</div>
+
+				<!-- Section placeholder -->
+				<h3 class="mv-section-subtitle">Données à venir</h3>
+				<div class="mv-card">
+					<p class="mv-muted">Les données pour le scrutin uninominal seront disponibles prochainement.</p>
 				</div>
 			</div>
 		</section>
