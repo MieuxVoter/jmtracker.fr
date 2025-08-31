@@ -17,19 +17,17 @@
 				<img class="mv-brand__logo" src="image.png" alt="Mieux Voter" />
 			</div>
 			<div class="mv-header__title">JM-tracker 2027</div>
+			<!-- Tabs: méthodes de vote -->
+			<div class="mv-controls mv-header-tabs" role="tablist" aria-label="Méthodes de vote">
+				<button class="mv-btn mv-btn--pill" data-tab="tab-fptp" role="tab" aria-selected="false">Scrutin Uninominal</button>
+				<button class="mv-btn mv-btn--pill" data-tab="tab-approval" role="tab" aria-selected="false">Vote par Approbation</button>
+				<button class="mv-btn mv-btn--pill mv-btn--primary" data-tab="tab-jm" role="tab" aria-selected="true">Jugement Majoritaire</button>
+			</div>
 		</div>
 	</header>
 
 	<main class="mv-main mv-container" id="graphiques">
 		<section class="mv-section">
-			<p class="mv-subtitle">Sélectionnez une méthode pour afficher les visualisations associées.</p>
-
-			<!-- Tabs: méthodes de vote -->
-			<div class="mv-controls" role="tablist" aria-label="Méthodes de vote">
-				<button class="mv-btn mv-btn--pill mv-btn--primary" data-tab="tab-jm" role="tab" aria-selected="true">Jugement Majoritaire</button>
-				<button class="mv-btn mv-btn--pill" data-tab="tab-approval" role="tab" aria-selected="false">Vote par Approbation</button>
-				<button class="mv-btn mv-btn--pill" data-tab="tab-fptp" role="tab" aria-selected="false">Scrutin Uninominal</button>
-			</div>
 
 			<!-- Contenu: Jugement Majoritaire -->
 			<div id="tab-jm" class="mv-tabcontent is-active" role="tabpanel" aria-labelledby="Jugement Majoritaire">
