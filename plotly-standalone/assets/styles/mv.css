@@ -56,22 +56,20 @@ a { color: inherit; text-decoration: none; }
 }
 .mv-header__inner {
 	display: grid;
-	grid-template-columns: 1fr auto 1fr; /* Three equal columns */
+	grid-template-columns: auto 1fr auto; /* Columns for logo, title, buttons */
 	align-items: center;
 	padding: 12px 0;
 	gap: 16px;
 }
-.mv-brand { 
-	display: block; 
-	width: auto; 
-	height: auto; 
+.mv-brand {
+	display: flex;
+	align-items: center;
+	justify-self: start;
 }
-.mv-brand__logo { 
-	width: auto; 
-	height: 28px; 
-	max-width: none; 
-	max-height: 28px; 
-	display: block; 
+.mv-brand__logo {
+	width: auto;
+	height: 28px;
+	display: block;
 }
 
 /* Header title styling */
@@ -80,15 +78,16 @@ a { color: inherit; text-decoration: none; }
 	font-weight: 700;
 	color: var(--mv-text);
 	margin: 0;
-	text-align: center; /* Center the text in its grid cell */
-	grid-column: 2; /* Place in the middle column */
+	text-align: center;
 }
 
 /* Header tabs styling */
 .mv-header-tabs {
 	display: flex;
 	gap: 8px;
-	justify-self: end; /* Align to the right of the third column */
+	justify-self: end;
+	flex-shrink: 0; /* Prevent this container from shrinking */
+	flex-wrap: nowrap; /* Prevent buttons inside from wrapping */
 }
 
 .mv-header-tabs .mv-btn {
@@ -174,51 +173,82 @@ a { color: inherit; text-decoration: none; }
 .mv-footer__inner { padding: 18px 0; }
 .mv-footer__text { margin: 0; color: var(--mv-muted); font-size: 14px; }
 
-/* Responsive */
-@media (max-width: 640px) {
-	.mv-container { padding: 0 16px; }
-	.mv-controls { gap: 8px; }
-	.mv-btn { padding: 10px 16px; font-size: 14px; }
-	.mv-plot { min-height: 400px; }
-	
-	/* Responsive header */
-	.mv-header__inner {
-		grid-template-columns: auto 1fr auto; /* Adjust for mobile */
-		gap: 12px;
-	}
-	
-	.mv-header__title {
-		font-size: 18px; /* Slightly smaller on mobile */
-	}
-	
-	.mv-header-tabs .mv-btn {
-		font-size: 12px;
-		padding: 6px 12px;
-	}
+/* --- Responsive Design --- */
+
+/* Catch the problematic range where one button might wrap */
+@media (max-width: 960px) {
+    .mv-header__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
+    .mv-brand {
+        gap: 8px;
+    }
 }
 
-@media (max-width: 480px) {
-	.mv-header__inner {
-		grid-template-columns: 1fr; /* Stack vertically on very small screens */
-		grid-template-rows: auto auto;
-		gap: 8px;
-		text-align: center;
-	}
-	
-	.mv-brand {
-		justify-self: center;
-	}
-	
-	.mv-header__title {
-		grid-column: 1;
-		grid-row: 2;
-	}
-	
-	.mv-header-tabs {
-		grid-column: 1;
-		grid-row: 3;
-		justify-self: center;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
+/* Medium screens (tablets, large phones) */
+@media (max-width: 768px) {
+    .mv-header__inner {
+        justify-content: space-between;
+    }
+    .mv-brand {
+        gap: 4px; /* Start bringing logo and title closer */
+    }
+    .mv-header__title {
+        font-size: 18px;
+    }
+    .mv-header-tabs .mv-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+}
+
+/* Tight screens - logo and title get closer */
+@media (max-width: 680px) {
+    .mv-header__inner {
+        justify-content: center;
+    }
+    .mv-brand {
+        gap: 0; /* Logo and title stick together when space is really tight */
+    }
+}
+
+/* Small screens (phones) */
+@media (max-width: 640px) {
+    .mv-header__inner {
+        padding: 16px;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .mv-brand {
+        gap: 6px; /* Give back some space when buttons wrap below */
+    }
+
+    .mv-header-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%; /* Force tabs to next line on small screens */
+    }
+
+    .mv-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .mv-card {
+        padding: 16px; /* Reduce padding on mobile */
+    }
+
+    h1, .mv-title { font-size: 28px; }
+    h2 { font-size: 22px; }
+    h3, .mv-section-subtitle { font-size: 18px; }
+    p { font-size: 15px; }
+
+    .mv-plot {
+        /* Reduce plot height on mobile to avoid excessive scrolling */
+        min-height: 450px;
+    }
 }
