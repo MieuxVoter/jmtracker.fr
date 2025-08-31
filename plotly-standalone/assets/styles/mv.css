@@ -40,8 +40,9 @@ a { color: inherit; text-decoration: none; }
 .mv-header__inner {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	padding: 18px 0;
+	justify-content: flex-start; /* Changed from space-between */
+	padding: 12px 0; /* Slightly reduced padding */
+	gap: 16px; /* Add gap between flex items */
 }
 .mv-brand { 
 	display: block; 
@@ -50,10 +51,21 @@ a { color: inherit; text-decoration: none; }
 }
 .mv-brand__logo { 
 	width: auto; 
-	height: auto; 
+	height: 28px; 
 	max-width: none; 
-	max-height: none; 
+	max-height: 28px; 
 	display: block; 
+}
+
+/* Header title */
+.mv-header__title {
+    font-family: 'DM Serif Display', serif !important;
+    font-weight: 700; /* bold */
+    color: var(--mv-brand-dark);
+    font-size: 40px; /* same as .mv-title */
+    line-height: 1.2;
+    margin: 0 0 0 16px;
+    white-space: nowrap;
 }
 
 .mv-nav { display: flex; gap: 18px; }

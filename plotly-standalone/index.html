@@ -16,6 +16,7 @@
 			<div class="mv-brand">
 				<img class="mv-brand__logo" src="image.png" alt="Mieux Voter" />
 			</div>
+			<div class="mv-header__title">JM-tracker 2027</div>
 			<nav class="mv-nav">
 				<a class="mv-nav__link" href="#">Accueil</a>
 				<a class="mv-nav__link" href="#graphiques">Graphiques</a>
@@ -76,10 +77,37 @@
 				</div>
 			</div>
 
-			<!-- Contenu: Approbation (placeholder) -->
+			<!-- Contenu: Approbation -->
 			<div id="tab-approval" class="mv-tabcontent" role="tabpanel" aria-labelledby="Vote par Approbation">
+				<!-- Explication -->
 				<div class="mv-card">
-					
+					<p>Le vote par approbation est une méthode où chaque électeur approuve autant de candidats qu'il le souhaite. Le candidat avec le plus d'approbations l'emporte.</p>
+				</div>
+
+				<!-- Section 1: Evolution du classement -->
+				<h3 class="mv-section-subtitle">Evolution du classement</h3>
+				<div class="mv-card">
+					<div class="mv-controls" aria-label="Sélection d'institut (classement)">
+						<button class="mv-btn mv-btn--pill mv-btn--primary" data-target="approval-ranking-plot" data-src="graphs/approbation/ranking_plot_IPSOS.json">IPSOS</button>
+					</div>
+					<div id="approval-ranking-plot" class="mv-plot" aria-live="polite"></div>
+				</div>
+
+				<!-- Section 2: Grilles d'approbation -->
+				<h3 class="mv-section-subtitle">Grilles d'approbation</h3>
+				<div class="mv-card">
+					<p class="mv-muted">Bientôt disponible.</p>
+				</div>
+
+				<!-- Section 3: Sondage-unique -->
+				<h3 class="mv-section-subtitle">Sondage-unique</h3>
+				<div class="mv-card">
+					<p class="mv-muted">Bientôt disponible.</p>
+				</div>
+
+				<!-- Section 4: Candidat -->
+				<h3 class="mv-section-subtitle">Candidat</h3>
+				<div class="mv-card">
 					<p class="mv-muted">Bientôt disponible.</p>
 				</div>
 			</div>
@@ -100,6 +128,6 @@
 		</div>
 	</footer>
 
-	<script src="assets/js/app.js"></script>
+	<script type="module" src="assets/js/app.js"></script>
 </body>
 </html> 
