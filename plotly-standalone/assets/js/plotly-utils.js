@@ -143,7 +143,8 @@ export async function fetchAndRenderInto(containerId, url) {
 
     // Otherwise, load the interactive graph
     try {
-        const res = await fetch(url, { cache: 'no-store' });
+    const cacheBustedUrl = url + (url.includes('?') ? '&' : '?') + 'v=' + new Date().getTime();
+    const res = await fetch(cacheBustedUrl, { cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const spec = await res.json();
         renderFromJsonSpecInto(el, spec);
@@ -186,7 +187,8 @@ async function loadInteractiveGraph(containerId, url) {
     container.innerHTML = '<div class="mv-plot" style="min-height: 400px; display: flex; align-items: center; justify-content: center;">Chargement...</div>';
     
     try {
-        const res = await fetch(url, { cache: 'no-store' });
+    const cacheBustedUrl = url + (url.includes('?') ? '&' : '?') + 'v=' + new Date().getTime();
+    const res = await fetch(cacheBustedUrl, { cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const spec = await res.json();
         renderFromJsonSpecInto(container, spec);

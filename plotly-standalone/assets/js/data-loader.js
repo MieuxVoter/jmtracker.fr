@@ -9,7 +9,8 @@
  */
 export async function getDirectoryListing(url) {
     try {
-        const res = await fetch(url);
+    const cacheBustedUrl = url + (url.includes('?') ? '&' : '?') + 'v=' + new Date().getTime();
+    const res = await fetch(cacheBustedUrl);
         if (!res.ok) throw new Error('dir list');
         const text = await res.text();
         const matches = [...text.matchAll(/href=\"([^\"]+\.json)\"/g)];
