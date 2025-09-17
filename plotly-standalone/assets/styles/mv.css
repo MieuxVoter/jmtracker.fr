@@ -1,4 +1,6 @@
 /* Core brand setup (extracted from globals.css) */
+/* Note: "Explorateur de méthodes de vote" - good phrasing for future use */
+/* Note: "Sélectionnez une méthode pour afficher les visualisations associées." - good phrasing for future use */
 :root {
 	--mv-brand: #2400FD;
 	--mv-brand-dark: #0A004C;
@@ -12,17 +14,32 @@
 html, body {
 	padding: 0;
 	margin: 0;
-	font-family: 'DM Serif Display', serif !important;
+	font-family: 'DM Sans', sans-serif !important;
 	background: var(--mv-bg);
 	color: var(--mv-text);
+	line-height: 1.6;
 }
 
-h1, h2, h4 { font-family: "DM Serif Display", serif !important; }
-
-h2 { line-height: 72px; font-weight: 400; }
-
-p, button, span, a, h3 {
+/* Typography hierarchy - unified with DM Sans as primary font */
+h1, h2, h3, h4, h5, h6 {
 	font-family: "DM Sans", sans-serif !important;
+	font-weight: 700;
+	line-height: 1.3;
+	margin: 0;
+}
+
+/* Use serif only for main title and section subtitles for visual hierarchy */
+.mv-title, 
+.mv-section-subtitle,
+.mv-header__title {
+	font-family: 'DM Serif Display', serif !important;
+}
+
+h2 { line-height: 1.3; font-weight: 400; }
+
+p, button, span, a, li, td, th {
+	font-family: "DM Sans", sans-serif !important;
+	line-height: 1.6;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -38,50 +55,136 @@ a { color: inherit; text-decoration: none; }
 	border-bottom: 1px solid var(--mv-border);
 }
 .mv-header__inner {
+	display: grid;
+	grid-template-columns: auto 1fr auto; /* Columns for logo, title, buttons */
+	align-items: center;
+	padding: 12px 0;
+	gap: 16px;
+}
+.mv-brand {
 	display: flex;
 	align-items: center;
-	justify-content: flex-start; /* Changed from space-between */
-	padding: 12px 0; /* Slightly reduced padding */
-	gap: 16px; /* Add gap between flex items */
+	justify-self: start;
 }
-.mv-brand { 
-	display: block; 
-	width: auto; 
-	height: auto; 
-}
-.mv-brand__logo { 
-	width: auto; 
-	height: 28px; 
-	max-width: none; 
-	max-height: 28px; 
-	display: block; 
+.mv-brand__logo {
+	width: auto;
+	height: 28px;
+	display: block;
 }
 
-/* Header title */
+/* Header title styling */
 .mv-header__title {
-    font-family: 'DM Serif Display', serif !important;
-    font-weight: 700; /* bold */
-    color: var(--mv-brand-dark);
-    font-size: 40px; /* same as .mv-title */
-    line-height: 1.2;
-    margin: 0 0 0 16px;
-    white-space: nowrap;
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--mv-text);
+	margin: 0;
+	text-align: center;
 }
 
+/* Header tabs styling */
+.mv-header-tabs {
+	display: flex;
+	gap: 8px;
+	justify-self: end;
+	flex-shrink: 0; /* Prevent this container from shrinking */
+	flex-wrap: nowrap; /* Prevent buttons inside from wrapping */
+}
+
+.mv-header-tabs .mv-btn {
+	font-size: 14px;
+	padding: 8px 16px;
+}
+
+/* Navigation */
 .mv-nav { display: flex; gap: 18px; }
 .mv-nav__link { font-weight: 700; color: var(--mv-brand-dark); }
 
+/* Main content and sections */
 .mv-main { padding: 32px 0 56px; }
 .mv-section { margin: 16px 0; }
 .mv-title { font-size: 40px; margin: 0 0 8px; }
 .mv-subtitle { margin: 0 0 24px; color: var(--mv-muted); }
+
+/* Section subtitles styling */
+.mv-section-subtitle {
+	font-size: 24px;
+	margin: 32px 0 16px 0;
+	color: var(--mv-brand-dark);
+}
+
+.mv-section-subtitle:first-of-type {
+	margin-top: 24px;
+}
 
 /* Cards / surfaces */
 .mv-card {
 	background: var(--mv-surface);
 	border: 1px solid var(--mv-border);
 	border-radius: 14px;
-	padding: 16px;
+	padding: 24px;
+}
+
+/* Add better spacing for card content */
+.mv-card p {
+	margin: 0 0 16px 0;
+}
+
+.mv-card p:last-child {
+	margin-bottom: 0;
+}
+
+/* Plot containers within cards */
+.mv-plot {
+	margin: 16px 0 0 0;
+	min-height: 1000px;
+	height: auto;
+}
+
+/* Static image fallback for mobile */
+.mv-plot-static {
+    text-align: center;
+}
+
+.mv-static-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.mv-plot-static img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--mv-border);
+    border-radius: 8px;
+}
+
+.mv-static-fullscreen-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--mv-bg);
+    border: 1px solid var(--mv-border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--mv-brand);
+    transition: all 0.2s ease;
+    opacity: 0.8;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.mv-static-fullscreen-btn:hover {
+    background: var(--mv-brand);
+    color: var(--mv-bg);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.mv-static-image-container:hover .mv-static-fullscreen-btn {
+    opacity: 1;
 }
 
 /* Controls */
@@ -105,21 +208,11 @@ a { color: inherit; text-decoration: none; }
 .mv-btn--primary { background: var(--mv-brand); color: #fff; border-color: var(--mv-brand); }
 
 /* Plot area */
-	.mv-plot {
-		width: 100%;
-		min-height: 1000px; /* ensures the card has space for Plotly to render */
-	}
 
 /* Tabs */
 .mv-tabcontent { display: none; }
 .mv-tabcontent.is-active { display: block; }
 .mv-section-title { margin: 0 0 8px; }
-.mv-section-subtitle {
-	font-family: 'DM Serif Display', serif !important;
-	font-size: 28px;
-	line-height: 1.2;
-	margin: 32px 0 12px;
-}
 .mv-muted { color: var(--mv-muted); }
 
 /* Footer */
@@ -127,7 +220,82 @@ a { color: inherit; text-decoration: none; }
 .mv-footer__inner { padding: 18px 0; }
 .mv-footer__text { margin: 0; color: var(--mv-muted); font-size: 14px; }
 
-/* Responsive */
+/* --- Responsive Design --- */
+
+/* Catch the problematic range where one button might wrap */
+@media (max-width: 960px) {
+    .mv-header__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
+    .mv-brand {
+        gap: 8px;
+    }
+}
+
+/* Medium screens (tablets, large phones) */
+@media (max-width: 768px) {
+    .mv-header__inner {
+        justify-content: space-between;
+    }
+    .mv-brand {
+        gap: 4px; /* Start bringing logo and title closer */
+    }
+    .mv-header__title {
+        font-size: 18px;
+    }
+    .mv-header-tabs .mv-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+}
+
+/* Tight screens - logo and title get closer */
+@media (max-width: 680px) {
+    .mv-header__inner {
+        justify-content: center;
+    }
+    .mv-brand {
+        gap: 0; /* Logo and title stick together when space is really tight */
+    }
+}
+
+/* Small screens (phones) */
 @media (max-width: 640px) {
-	.mv-title { font-size: 30px; }
-} 
+    .mv-header__inner {
+        padding: 16px;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .mv-brand {
+        gap: 6px; /* Give back some space when buttons wrap below */
+    }
+
+    .mv-header-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%; /* Force tabs to next line on small screens */
+    }
+
+    .mv-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .mv-card {
+        padding: 16px; /* Reduce padding on mobile */
+    }
+
+    h1, .mv-title { font-size: 28px; }
+    h2 { font-size: 22px; }
+    h3, .mv-section-subtitle { font-size: 18px; }
+    p { font-size: 15px; }
+
+    .mv-plot {
+        /* Reduce plot height on mobile to avoid excessive scrolling */
+        min-height: 450px;
+    }
+}
